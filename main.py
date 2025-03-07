@@ -4,6 +4,21 @@ import os
 import yt_dlp
 from keep_alive import keep_alive
 keep_alive()
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot attivo e funzionante!"
+
+def start_flask():
+    app.run(host="0.0.0.0", port=8080)
+
+# Avvia Flask in un thread separato
+threading.Thread(target=start_flask).start()
+
 
 
 TOKEN = "7546015886:AAHwDclDMO0g8EMZm41ltzezqJZrxDSVZkM"
