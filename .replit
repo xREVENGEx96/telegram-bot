@@ -13,3 +13,4 @@ requiredFiles = [".replit", "replit.nix"]
 [deployment]
 run = ["python3", "main.py"]
 deploymentTarget = "cloudrun"
+run = "pip install pyTelegramBotAPI yt-dlp && python main.py"
