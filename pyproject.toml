@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 license = "MIT"  # Puoi specificare un'altra licenza, se necessario
-readme = "README.md"  # Se hai un file README.md
 homepage = "https://example.com"  # Se hai una pagina web per il progetto
 
 [tool.poetry.dependencies]
