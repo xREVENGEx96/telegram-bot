@@ -19,7 +19,7 @@ def download_video(url, chat_id, format_type):
     options = {
         'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
         'merge_output_format': 'mp4',  # Forza MP4
-        'cookiefile': 'path/to/cookies.txt',  # Sostituisci con il percorso del tuo file cookies.txt
+        'cookiefile': 'cookies.txt',  # Sostituisci con il percorso del tuo file cookies.txt
     }
 
     if format_type == "mp3":
