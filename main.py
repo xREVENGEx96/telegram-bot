@@ -109,5 +109,5 @@ def process_format_choice(message, url):
     else:
         bot.send_message(message.chat.id, "⚠️ Per favore, scegli tra MP3 o MP4.")
 
-bot.polling(timeout=200, long_polling_timeout=200)
-
+# Polling aggiornato per una gestione migliore
+bot.polling(none_stop=True, timeout=10, long_polling_timeout=10)
