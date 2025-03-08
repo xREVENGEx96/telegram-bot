@@ -5,8 +5,6 @@ import yt_dlp
 from keep_alive import keep_alive
 keep_alive()
 
-
-
 TOKEN = "7546015886:AAHwDclDMO0g8EMZm41ltzezqJZrxDSVZkM"
 bot = telebot.TeleBot(TOKEN)
 
@@ -17,9 +15,11 @@ if not os.path.exists(DOWNLOAD_FOLDER):
 def download_video(url, chat_id, format_type):
     bot.send_message(chat_id, "🎥 Download in corso, attendi...")
 
+    # Opzioni per yt-dlp, includendo i cookie
     options = {
         'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
         'merge_output_format': 'mp4',  # Forza MP4
+        'cookiefile': 'path/to/cookies.txt',  # Sostituisci con il percorso del tuo file cookies.txt
     }
 
     if format_type == "mp3":
@@ -48,15 +48,17 @@ def download_video(url, chat_id, format_type):
             file_base = info['title']
             file_name = f"{DOWNLOAD_FOLDER}/{file_base}{ext}"
 
+            # Cerca il file scaricato nella cartella
             for file in os.listdir(DOWNLOAD_FOLDER):
                 if file.startswith(file_base):
                     file_name = f"{DOWNLOAD_FOLDER}/{file}"
                     break
 
+            # Controllo della dimensione del file
             if os.path.exists(file_name):
-                file_size = os.path.getsize(file_name) / (1024 * 1024)  
+                file_size = os.path.getsize(file_name) / (1024 * 1024)  # MB
 
-                if file_size > 50:
+                if file_size > 50:  # Limita la dimensione del file a 50 MB
                     bot.send_message(chat_id, f"❌ Il file è troppo grande ({file_size:.2f}MB).")
                 else:
                     with open(file_name, "rb") as file:
@@ -65,7 +67,7 @@ def download_video(url, chat_id, format_type):
                         else:
                             bot.send_video(chat_id, file)
 
-                os.remove(file_name)  
+                os.remove(file_name)  # Rimuove il file dopo l'invio
                 bot.send_message(chat_id, "✅ Download completato! E si pigghiu a mamma i cu fuuuuuu, ciuuuu nfiluuuu")
             else:
                 bot.send_message(chat_id, "❌ Errore: il file non è stato trovato!")
@@ -108,3 +110,4 @@ def process_format_choice(message, url):
         bot.send_message(message.chat.id, "⚠️ Per favore, scegli tra MP3 o MP4.")
 
 bot.polling(timeout=200, long_polling_timeout=200)
+
