@@ -1,13 +1,20 @@
-[project]
+[tool.poetry]
 name = "python-template"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
-requires-python = ">=3.11"
-dependencies = [
-    "ffmpeg-python>=0.2.0",
-    "flask-ngrok>=0.0.25",
-    "flask>=3.1.0",
-    "pytelegrambotapi>=4.26.0",
-    "yt-dlp>=2025.2.19",
-]
+license = "MIT"  # Puoi specificare un'altra licenza, se necessario
+readme = "README.md"  # Se hai un file README.md
+homepage = "https://example.com"  # Se hai una pagina web per il progetto
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+ffmpeg-python = ">=0.2.0"
+flask-ngrok = ">=0.0.25"
+flask = ">=3.1.0"
+pytelegrambotapi = ">=4.26.0"
+yt-dlp = ">=2025.2.19"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
